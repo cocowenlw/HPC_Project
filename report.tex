@@ -20,15 +20,23 @@
         \begin{align*}
             f = \sin(l \pi x), \quad u_0 = e^{x}, \quad u(0,t) = u(1,t) = 0, \quad \kappa = 1.0. 
         \end{align*}
-        So, we can get these fomulations,and use explicit difference scheme.
+        So, we can get the fomulation
         \begin{align*}
-            \rho c \frac{\partial u}{\partial t} - \kappa  \frac{\partial^2 u}{\partial x^2} &= sin(l\pi x) \\
+            \rho c \frac{\partial u}{\partial t} - \kappa  \frac{\partial^2 u}{\partial x^2} &= sin(l\pi x)
+        \end{align*}
+        Use explicit difference scheme.
+        \begin{align*}
             \frac{\partial u}{\partial t} &= \frac{u^{n+1}_i - u^n_i}{\Delta t} \\
             \frac{\partial^2 u}{\partial x^2} &= \frac{u^n_{i+1}-2u^n_i+u^n_{i-1}}{\Delta x^2}
         \end{align*}
-        A numerical solution can be obtained.
+        A explicit numerical solution can be obtained.
         \begin{align*}
             u^{n+1}_i &= \frac{\kappa \Delta t}{\rho c \Delta x^2} u^n_{i+1} + (1 - \frac{2\kappa \Delta t}{\rho c \Delta x^2})u^n_i + \frac{\kappa \Delta t}{\rho c \Delta x^2}u^n_{i-1} + \frac{\Delta t sin(l \pi x)}{\rho c}
+        \end{align*}
+        Use implicit difference scheme.
+        \begin{align*}
+            \frac{\partial u}{\partial t} &= \frac{u^{n+1}_i - u^n_i}{\Delta t} \\
+            \frac{\partial^2 u}{\partial x^2} &= \frac{u^{n+1}_{i+1}-2u^{n+1}_i+u^{n+1}_{i-1}}{\Delta x^2}
         \end{align*}
         then we calculate the analytical solution.the solution of the partial differential equation will converge to a steady state solution as time $t \rightarrow \infty$. In particular, the steady state is characterized by $\partial u / \partial t = 0$. 
         \begin{align*}
