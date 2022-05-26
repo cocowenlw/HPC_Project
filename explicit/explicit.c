@@ -71,14 +71,16 @@ int main(int argc,char **args)
     ierr = VecCopy(u,uold);CHKERRQ(ierr);
     ierr = VecView(uold,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
 
-    for (j=0; j<25000; j++)
+    for (j=0; j<25001; j++)
     {
         t += dt; 
         x = 0;
         ierr = MatMult(A, uold, u);
         for (i=1; i<n ; i++)
         {
-            v    = (PetscReal)(sin(pi*x));  
+            x   += dx;
+            v    = (PetscReal)(dt*sin(pi*x));  
+            // ierr = PetscPrintf(PETSC_COMM_SELF,"v = %g\n", v);CHKERRQ(ierr);
             ierr = VecSetValues(u,1,&i,&v,ADD_VALUES);CHKERRQ(ierr);
         }
         ierr = VecAssemblyBegin(u);CHKERRQ(ierr);
