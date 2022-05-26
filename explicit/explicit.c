@@ -5,7 +5,7 @@ static char help[] = "Project.\n\n";
 
 int main(int argc,char **args)
 {
-    Vec            u, uold;          /* approx solution, RHS, exact solution */
+    Vec            u, uold, ua;          /* approx solution, RHS, exact solution */
     Mat            A;                /* linear system matrix */
     KSP            ksp;              /* linear solver context */
     PC             pc;               /* preconditioner context */
@@ -32,6 +32,7 @@ int main(int argc,char **args)
     ierr = VecSetSizes(u,PETSC_DECIDE,n+1);CHKERRQ(ierr);
     ierr = VecSetFromOptions(u);CHKERRQ(ierr);
     ierr = VecDuplicate(u, &uold);CHKERRQ(ierr);
+    ierr = VecDuplicate(u, &ua);CHKERRQ(ierr);
     ierr = VecGetOwnershipRange(u,&rstart,&rend);CHKERRQ(ierr);
     ierr = VecGetLocalSize(u,&nlocal);CHKERRQ(ierr);
 
@@ -74,6 +75,18 @@ int main(int argc,char **args)
     for (j=0; j<25001; j++)
     {
         t += dt; 
+        x  = 0;
+        // analytical solution
+        for (i=0; i<n+1; i++)
+        {
+            x    = dx*i;
+            v    = (PetscReal)(sin(pi*x)/(pi*pi) - sin(pi)*x/(pi*pi));  
+            // ierr = PetscPrintf(PETSC_COMM_SELF,"v = %g\n", v);CHKERRQ(ierr);
+            ierr = VecSetValues(ua,1,&i,&v,INSERT_VALUES);CHKERRQ(ierr);
+        }
+        ierr = VecAssemblyBegin(ua);CHKERRQ(ierr);
+        ierr = VecAssemblyEnd(ua);CHKERRQ(ierr);
+        //  solution
         x = 0;
         ierr = MatMult(A, uold, u);
         for (i=1; i<n ; i++)
@@ -88,9 +101,17 @@ int main(int argc,char **args)
         ierr = VecCopy(u,uold);CHKERRQ(ierr);
         if(!(j%200)){
             ierr = PetscPrintf(PETSC_COMM_WORLD,"t = %g\n", t);CHKERRQ(ierr);
+            ierr = PetscPrintf(PETSC_COMM_WORLD,"numercial solution");CHKERRQ(ierr);
             ierr = VecView(u,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+            ierr = PetscPrintf(PETSC_COMM_WORLD,"analytica solutionl");CHKERRQ(ierr);
+            ierr = VecView(ua,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
         }
     }
+
+    ierr = VecDestroy(&u);CHKERRQ(ierr);
+    ierr = VecDestroy(&uold);CHKERRQ(ierr); 
+    ierr = VecDestroy(&ua);CHKERRQ(ierr); 
+    ierr = MatDestroy(&A);CHKERRQ(ierr);
     ierr = PetscFinalize();
     return ierr;
 }
