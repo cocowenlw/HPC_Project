@@ -195,3 +195,133 @@ PS:
 
 Read file <petsc.err> for stderr output of this job.
 
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3775694: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Fri May 27 18:44:18 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Fri May 27 18:44:19 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/implicit> was used as the working directory.
+Started at Fri May 27 18:44:19 2022.
+Terminated at Fri May 27 18:44:23 2022.
+Results reported at Fri May 27 18:44:23 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+mpirun -np 1 ./implicit.out \
+-log_view > log 2>&1
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1.00 sec.
+    Max Memory :                                 18 MB
+    Average Memory :                             18.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              7
+    Max Threads :                                9
+    Run time :                                   2 sec.
+    Turnaround time :                            5 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3775697: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Fri May 27 18:45:12 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Fri May 27 18:45:12 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/implicit> was used as the working directory.
+Started at Fri May 27 18:45:12 2022.
+Terminated at Fri May 27 18:45:15 2022.
+Results reported at Fri May 27 18:45:15 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+mpirun -np 1 ./implicit.out \
+-log_view > log 2>&1
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1.00 sec.
+    Max Memory :                                 18 MB
+    Average Memory :                             18.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              7
+    Max Threads :                                9
+    Run time :                                   2 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+

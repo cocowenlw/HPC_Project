@@ -38,6 +38,40 @@
             \frac{\partial u}{\partial t} &= \frac{u^{n+1}_i - u^n_i}{\Delta t} \\
             \frac{\partial^2 u}{\partial x^2} &= \frac{u^{n+1}_{i+1}-2u^{n+1}_i+u^{n+1}_{i-1}}{\Delta x^2}
         \end{align*}
+        A implicit numerical solution can be obtained.
+        \begin{align*}
+            CFL &= \frac{\kappa \Delta t}{\rho c \Delta x^2} \\
+            -CFL u^{n+1}_{i-1} + (1+2CFL)u^{n+1}_i - CFL u^{n+1}_{i+1} &= u^n_i + \frac{\kappa \Delta t}{\rho c}sin(l \pi x)
+        \end{align*}
+        To solve the implicit equation, we need to solve the diagonal matrix first.
+        \begin{align*}
+            \left[
+                \begin{matrix}
+                    1        & 0           & 0       & 0        & \cdots   & 0      \\
+                    -CFL     & 1+2CFL      & -CFL    & 0        &\cdots    & 0      \\
+                    0        & -CFL        & 1+2CFL  & -CFL     &\cdots    & 0      \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    0        & 0           &\cdots   & -CFL     & 1+2CFL   & -CFL   \\
+                    0        & 0           & 0       & 0        & \cdots   & 1      \\
+                \end{matrix}
+            \right]
+            \left[
+                \begin{matrix}
+                    u^{n+1}_0 \\ u^{n+1}_1 \\ u^{n+1}_2 \\ \cdots \\ u^{n+1}_{n-1} \\ u^{n+1}_n \\           
+                \end{matrix}
+            \right]
+            =
+            \left[
+                \begin{matrix}
+                    u^{n}_0 + \frac{\kappa \Delta t}{\rho c}sin(l \pi x) \\ 
+                    u^{n}_1 + \frac{\kappa \Delta t}{\rho c}sin(l \pi x) \\ 
+                    u^{n}_2 + \frac{\kappa \Delta t}{\rho c}sin(l \pi x) \\
+                    \cdots \\ 
+                    u^{n}_{n-1} + \frac{\kappa \Delta t}{\rho c}sin(l \pi x) \\ 
+                    u^{n}_n + \frac{\kappa \Delta t}{\rho c}sin(l \pi x) \\           
+                \end{matrix}
+            \right]
+        \end{align*}
         then we calculate the analytical solution.the solution of the partial differential equation will converge to a steady state solution as time $t \rightarrow \infty$. In particular, the steady state is characterized by $\partial u / \partial t = 0$. 
         \begin{align*}
             \kappa  \frac{\partial^2 u}{\partial x^2} + sin(l\pi x) &= 0 \\
@@ -48,4 +82,5 @@
         \begin{align*}
             u &= \frac{sin(l \pi x)}{l^2\pi^2} - \frac{sin(l \pi)}{l^2 \pi^2}x
         \end{align*}
+        
 \end{document}

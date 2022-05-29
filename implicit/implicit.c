@@ -5,7 +5,7 @@ static char help[] = "Project implicit.\n\n";
 
 int main(int argc,char **args)
 {
-    Vec            u, uold, ua, add_term;          /* approx solution, RHS, exact solution */
+    Vec            u, uold, ua, add_term, err_term;          /* approx solution, RHS, exact solution */
     Mat            A;                /* linear system matrix */
     KSP            ksp;              /* linear solver context */
     PC             pc;               /* preconditioner context */
@@ -34,6 +34,7 @@ int main(int argc,char **args)
     ierr = VecDuplicate(u, &uold);CHKERRQ(ierr);
     ierr = VecDuplicate(u, &ua);CHKERRQ(ierr);
     ierr = VecDuplicate(u, &add_term);CHKERRQ(ierr);
+    ierr = VecDuplicate(u, &err_term);CHKERRQ(ierr);
     ierr = VecGetOwnershipRange(u,&rstart,&rend);CHKERRQ(ierr);
     ierr = VecGetLocalSize(u,&nlocal);CHKERRQ(ierr);
 
@@ -119,19 +120,23 @@ int main(int argc,char **args)
         ierr = KSPSolve(ksp, uold, u);
         ierr = VecCopy(u,uold);CHKERRQ(ierr);
         ierr = VecAXPY(uold,1.0,add_term);CHKERRQ(ierr);
+        ierr = VecCopy(u,err_term);CHKERRQ(ierr);
         if(!(j%200)){
             ierr = PetscPrintf(PETSC_COMM_WORLD,"t = %g\n", t);CHKERRQ(ierr);
             ierr = PetscPrintf(PETSC_COMM_WORLD,"numercial solution");CHKERRQ(ierr);
             ierr = VecView(u,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
             ierr = PetscPrintf(PETSC_COMM_WORLD,"analytica solutionl");CHKERRQ(ierr);
             ierr = VecView(ua,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+            ierr = VecAXPY(err_term,-1.0,ua);CHKERRQ(ierr);
+             ierr = PetscPrintf(PETSC_COMM_WORLD,"error term");CHKERRQ(ierr);
+            ierr = VecView(err_term,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
         }
     }
-
     ierr = VecDestroy(&u);CHKERRQ(ierr);
     ierr = VecDestroy(&uold);CHKERRQ(ierr); 
     ierr = VecDestroy(&ua);CHKERRQ(ierr); 
     ierr = VecDestroy(&add_term);CHKERRQ(ierr); 
+    ierr = VecDestroy(&err_term);CHKERRQ(ierr); 
     ierr = MatDestroy(&A);CHKERRQ(ierr);
     ierr = PetscFinalize();
     return ierr;
