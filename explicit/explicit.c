@@ -13,7 +13,7 @@ int main(int argc,char **args)
     PC             pc;               /* preconditioner context */
     PetscReal      CFL=0.4, dx, dt, x=0, t=0;
     PetscErrorCode ierr;
-    PetscInt       i,j,n = 100,col[3],its,rstart,rend,nlocal,indic,restart=0;
+    PetscInt       i,j,n = 100,col[3],its,rstart,rend,nlocal,hstart,hend,hlocal,indic,restart=0;
     PetscScalar    one = 1.0,value[3], v, *array;
     PetscMPIInt    rank;
     PetscViewer    viewer;
@@ -28,18 +28,21 @@ int main(int argc,char **args)
     ierr = PetscObjectSetName((PetscObject) save_value, "save_value");
     ierr = VecSetSizes(save_value,3,PETSC_DECIDE);CHKERRQ(ierr);
     ierr = VecSetFromOptions(save_value);CHKERRQ(ierr);
+
+    ierr = VecGetOwnershipRange(save_value,&hstart,&hend);CHKERRQ(ierr);
+    ierr = VecGetLocalSize(save_value,&hlocal);CHKERRQ(ierr);
+    ierr = PetscPrintf(PETSC_COMM_SELF,"rank = [%d] nlocal = %d hstart = %d hend = %d\n", rank, hlocal,hstart, hend);CHKERRQ(ierr); 
     /* get value from hdf5*/
     if(restart){
         ierr = PetscViewerHDF5Open(PETSC_COMM_WORLD,"explicit.h5",FILE_MODE_READ,&viewer);CHKERRQ(ierr);
         ierr = VecLoad(save_value, viewer);CHKERRQ(ierr);
         ierr = VecView(save_value,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
-        col[0] = 0;col[1] = 1;col[2] = 2;
-        ierr = VecGetValues(save_value, 3, col, value);
-        if(rank==0){
-        ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %g CFL = %g t = %g\n", value[0], value[1], value[2]);CHKERRQ(ierr);
-        n   = (int)value[0]; CFL = value[1]; t = value[2]; 
-         ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %g CFL = %g t = %g\n", n, CFL, t);CHKERRQ(ierr);
+        for(i=hstart; i<hend; i+=hlocal){
+            col[0] = i;col[1] = i+1;col[2] = i+2;
         }
+        ierr = VecGetValues(save_value, 3, col, value);
+        // ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %g CFL = %g t = %g\n", value[0], value[1], value[2]);CHKERRQ(ierr);
+        n = (int)value[0]; CFL = value[1]; t = value[2]; 
     }
     dx  = 1.0/n;
     dt  = CFL * dx * dx;
@@ -58,7 +61,6 @@ int main(int argc,char **args)
 
     ierr = VecGetOwnershipRange(u,&rstart,&rend);CHKERRQ(ierr);
     ierr = VecGetLocalSize(u,&nlocal);CHKERRQ(ierr);
-
     ierr = PetscPrintf(PETSC_COMM_SELF,"rank = [%d] nlocal = %d rstart = %d rend = %d\n", rank, nlocal,rstart, rend);CHKERRQ(ierr); 
     // set matrix
     ierr = MatCreate(PETSC_COMM_WORLD,&A);CHKERRQ(ierr);
@@ -96,6 +98,7 @@ int main(int argc,char **args)
     ierr = VecAssemblyEnd(u);CHKERRQ(ierr);
     if(restart){
         VecLoad(u, viewer); // if is reload. Set value here
+        ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr); // close the read IO
     }
     ierr = VecCopy(u,uold);CHKERRQ(ierr);
     ierr = VecView(uold,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
@@ -110,13 +113,7 @@ int main(int argc,char **args)
     }
     ierr = VecAssemblyBegin(add_term);CHKERRQ(ierr);
     ierr = VecAssemblyEnd(add_term);CHKERRQ(ierr);
-    /*add CFL and n to save_value */
-    ierr = VecSetValue(save_value,0,n,INSERT_VALUES);CHKERRQ(ierr);
-    ierr = VecSetValue(save_value,1,CFL,INSERT_VALUES);CHKERRQ(ierr);
-    ierr = VecAssemblyBegin(save_value);CHKERRQ(ierr);
-    ierr = VecAssemblyEnd(save_value);CHKERRQ(ierr);
 
-    ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr); // close the read IO
     ierr = PetscViewerHDF5Open(PETSC_COMM_WORLD,"explicit.h5",FILE_MODE_WRITE,&viewer);CHKERRQ(ierr); // open write IO
     for (j=0; j<25001; j++)
     {
@@ -127,7 +124,6 @@ int main(int argc,char **args)
         {
             x    = dx*i;
             v    = (PetscReal)(sin(pi*x)/(pi*pi) - sin(pi)*x/(pi*pi));  
-            // ierr = PetscPrintf(PETSC_COMM_SELF,"v = %g\n", v);CHKERRQ(ierr);
             ierr = VecSetValues(ua,1,&i,&v,INSERT_VALUES);CHKERRQ(ierr);
         }
         ierr = VecAssemblyBegin(ua);CHKERRQ(ierr);
@@ -137,21 +133,23 @@ int main(int argc,char **args)
         ierr = VecCopy(u,uold);CHKERRQ(ierr);
         if(!(j%10)){   
             /*add t to save_value */
-            ierr = VecSetValue(save_value,2,t,INSERT_VALUES);CHKERRQ(ierr);
+            for(i=hstart; i<hend; i+=hlocal){
+                ierr = VecSetValue(save_value,i,n,INSERT_VALUES);CHKERRQ(ierr);
+                ierr = VecSetValue(save_value,i+1,CFL,INSERT_VALUES);CHKERRQ(ierr);
+                ierr = VecSetValue(save_value,i+2,t,INSERT_VALUES);CHKERRQ(ierr);
+            } 
             ierr = VecAssemblyBegin(save_value);CHKERRQ(ierr);
-            ierr = VecAssemblyEnd(save_value);CHKERRQ(ierr);  
+            ierr = VecAssemblyEnd(save_value);CHKERRQ(ierr); 
             /*print*/
-            ierr = PetscPrintf(PETSC_COMM_WORLD,"t = %g\n", t);CHKERRQ(ierr);
-            ierr = PetscPrintf(PETSC_COMM_WORLD,"numercial solution");CHKERRQ(ierr);
-            ierr = VecView(u,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
-            ierr = PetscPrintf(PETSC_COMM_WORLD,"analytica solutionl");CHKERRQ(ierr);
-            ierr = VecView(ua,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+            ierr = PetscPrintf(PETSC_COMM_WORLD,"t = %f\n", t);CHKERRQ(ierr);
             // write numerical solution and n,t,CFL in hdf5
+            ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %d CFL = %f t = %f\n", n, CFL, t);CHKERRQ(ierr);
+            ierr = VecView(save_value,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
             ierr = VecView(save_value,viewer);CHKERRQ(ierr);
-            ierr = VecView(u,viewer);CHKERRQ(ierr);
+            ierr = VecView(u,viewer);CHKERRQ(ierr);          
         }
-    }
-    ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr);
+    }ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr);
+   
     ierr = VecDestroy(&u);CHKERRQ(ierr);
     ierr = VecDestroy(&uold);CHKERRQ(ierr); 
     ierr = VecDestroy(&ua);CHKERRQ(ierr); 
