@@ -1,9 +1,10 @@
 #!/bin/bash
 #BSUB -J petsc-test
-#BSUB -q debug
+#BSUB -q ser
 #BSUB -n 5
 #BSUB -e petsc.err
 #BSUB -o petsc.out
+#BSUB -m 'r01n28'
 
 module purge
 module load intel/2018.4
@@ -13,7 +14,7 @@ module load mpi/intel/2018.4
 # mpirun -np 5 ./explicit.out \
 # -log_view > $LSB_JOBID.log 2>&1 \
 
-mpirun -np 5 ./explicit.out -restart 1 \
+mpirun -np 1 ./explicit.out -restart 0 -n 100 \
 -log_view > $LSB_JOBID.log 2>&1 \
 
 # mpirun -np 5 ./ex5.out -ksp_type gmres \

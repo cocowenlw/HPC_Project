@@ -9,7 +9,7 @@ module purge
 module load intel/2018.4
 module load mpi/intel/2018.4
 
-mpirun -np 1 ./implicit.out \
+mpirun -np 1 ./implicit.out -restart 0 -n 100 \
 -log_view > log 2>&1
 # mpirun -np 5 ./ex5.out -ksp_type gmres \
 #   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \

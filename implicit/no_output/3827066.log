@@ -1,0 +1,323 @@
+dx= 0.01 dt = 2e-05 its 50001
+Vec Object: u_numeracal 1 MPI processes
+  type: seq
+0.
+0.00318605
+0.00636895
+0.00954557
+0.0127128
+0.0158674
+0.0190064
+0.0221266
+0.025225
+0.0282985
+0.0313441
+0.0343588
+0.0373395
+0.0402834
+0.0431875
+0.046049
+0.048865
+0.0516329
+0.0543497
+0.057013
+0.0596199
+0.0621681
+0.0646548
+0.0670778
+0.0694345
+0.0717228
+0.0739402
+0.0760847
+0.0781541
+0.0801463
+0.0820595
+0.0838916
+0.085641
+0.0873059
+0.0888846
+0.0903755
+0.0917773
+0.0930885
+0.0943078
+0.095434
+0.0964661
+0.0974029
+0.0982437
+0.0989874
+0.0996335
+0.100181
+0.10063
+0.10098
+0.10123
+0.101379
+0.101429
+0.101379
+0.101229
+0.100979
+0.100629
+0.10018
+0.0996319
+0.0989856
+0.0982416
+0.0974006
+0.0964635
+0.0954311
+0.0943046
+0.093085
+0.0917736
+0.0903716
+0.0888803
+0.0873014
+0.0856363
+0.0838866
+0.0820542
+0.0801408
+0.0781483
+0.0760786
+0.0739339
+0.0717162
+0.0694277
+0.0670706
+0.0646474
+0.0621604
+0.059612
+0.0570047
+0.0543412
+0.0516241
+0.048856
+0.0460397
+0.0431779
+0.0402735
+0.0373293
+0.0343483
+0.0313334
+0.0282875
+0.0252138
+0.0221151
+0.0189946
+0.0158553
+0.0127004
+0.00953287
+0.00635605
+0.00317297
+-1.3244e-05
+error termVec Object: 1 MPI processes
+  type: seq
+0.
+3.47387e-06
+6.94419e-06
+1.04074e-05
+1.386e-05
+1.72983e-05
+2.0719e-05
+2.41184e-05
+2.74932e-05
+3.08398e-05
+3.41548e-05
+3.74348e-05
+4.06765e-05
+4.38765e-05
+4.70315e-05
+5.01384e-05
+5.31938e-05
+5.61947e-05
+5.9138e-05
+6.20206e-05
+6.48395e-05
+6.75919e-05
+7.02749e-05
+7.28857e-05
+7.54217e-05
+7.78801e-05
+8.02585e-05
+8.25543e-05
+8.47652e-05
+8.68888e-05
+8.89229e-05
+9.08654e-05
+9.27142e-05
+9.44674e-05
+9.61231e-05
+9.76796e-05
+9.91351e-05
+0.000100488
+0.000101737
+0.000102881
+0.000103918
+0.000104847
+0.000105668
+0.000106379
+0.000106979
+0.000107468
+0.000107845
+0.000108109
+0.000108261
+0.000108299
+0.000108225
+0.000108037
+0.000107735
+0.00010732
+0.000106793
+0.000106153
+0.000105401
+0.000104537
+0.000103563
+0.000102479
+0.000101285
+9.99844e-05
+9.85765e-05
+9.7063e-05
+9.54453e-05
+9.37249e-05
+9.19032e-05
+8.9982e-05
+8.79629e-05
+8.58479e-05
+8.36389e-05
+8.13378e-05
+7.89469e-05
+7.64683e-05
+7.39043e-05
+7.12573e-05
+6.85297e-05
+6.57241e-05
+6.28432e-05
+5.98895e-05
+5.68659e-05
+5.37751e-05
+5.06201e-05
+4.74039e-05
+4.41293e-05
+4.07996e-05
+3.74178e-05
+3.39871e-05
+3.05107e-05
+2.69919e-05
+2.3434e-05
+1.98404e-05
+1.62143e-05
+1.25593e-05
+8.87879e-06
+5.17642e-06
+1.45559e-06
+-2.29454e-06
+-5.95864e-06
+-9.60224e-06
+-1.3244e-05
+************************************************************************************************************************
+***             WIDEN YOUR WINDOW TO 120 CHARACTERS.  Use 'enscript -r -fCourier9' to print this document            ***
+************************************************************************************************************************
+
+---------------------------------------------- PETSc Performance Summary: ----------------------------------------------
+
+./implicit_no.out on a  named r13n44 with 1 processor, by mae-wenlw Wed Jun  8 22:12:02 2022
+Using Petsc Release Version 3.16.6, Mar 30, 2022 
+
+                         Max       Max/Min     Avg       Total
+Time (sec):           7.368e-01     1.000   7.368e-01
+Objects:              3.100e+01     1.000   3.100e+01
+Flop:                 3.810e+08     1.000   3.810e+08  3.810e+08
+Flop/sec:             5.171e+08     1.000   5.171e+08  5.171e+08
+MPI Messages:         0.000e+00     0.000   0.000e+00  0.000e+00
+MPI Message Lengths:  0.000e+00     0.000   0.000e+00  0.000e+00
+MPI Reductions:       0.000e+00     0.000
+
+Flop counting convention: 1 flop = 1 real number operation of type (multiply/divide/add/subtract)
+                            e.g., VecAXPY() for real vectors of length N --> 2N flop
+                            and VecAXPY() for complex vectors of length N --> 8N flop
+
+Summary of Stages:   ----- Time ------  ----- Flop ------  --- Messages ---  -- Message Lengths --  -- Reductions --
+                        Avg     %Total     Avg     %Total    Count   %Total     Avg         %Total    Count   %Total
+ 0:      Main Stage: 7.3675e-01 100.0%  3.8101e+08 100.0%  0.000e+00   0.0%  0.000e+00        0.0%  0.000e+00   0.0%
+
+------------------------------------------------------------------------------------------------------------------------
+See the 'Profiling' chapter of the users' manual for details on interpreting output.
+Phase summary info:
+   Count: number of times phase was executed
+   Time and Flop: Max - maximum over all processors
+                  Ratio - ratio of maximum to minimum over all processors
+   Mess: number of messages sent
+   AvgLen: average message length (bytes)
+   Reduct: number of global reductions
+   Global: entire computation
+   Stage: stages of a computation. Set stages with PetscLogStagePush() and PetscLogStagePop().
+      %T - percent time in this phase         %F - percent flop in this phase
+      %M - percent messages in this phase     %L - percent message lengths in this phase
+      %R - percent reductions in this phase
+   Total Mflop/s: 10e-6 * (sum of flop over all processors)/(max time over all processors)
+------------------------------------------------------------------------------------------------------------------------
+Event                Count      Time (sec)     Flop                              --- Global ---  --- Stage ----  Total
+                   Max Ratio  Max     Ratio   Max  Ratio  Mess   AvgLen  Reduct  %T %F %M %L %R  %T %F %M %L %R Mflop/s
+------------------------------------------------------------------------------------------------------------------------
+
+--- Event Stage 0: Main Stage
+
+VecView                2 1.0 3.5381e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+VecMDot           168070 1.0 2.6960e-02 1.0 7.75e+07 1.0 0.0e+00 0.0e+00 0.0e+00  4 20  0  0  0   4 20  0  0  0  2876
+VecNorm           218071 1.0 2.7335e-02 1.0 4.38e+07 1.0 0.0e+00 0.0e+00 0.0e+00  4 12  0  0  0   4 12  0  0  0  1603
+VecScale          218071 1.0 2.6040e-02 1.0 2.20e+07 1.0 0.0e+00 0.0e+00 0.0e+00  4  6  0  0  0   4  6  0  0  0   846
+VecCopy           150004 1.0 1.5995e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+VecSet            100023 1.0 9.5983e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+VecAXPY           100004 1.0 1.2916e-02 1.0 2.02e+07 1.0 0.0e+00 0.0e+00 0.0e+00  2  5  0  0  0   2  5  0  0  0  1564
+VecMAXPY          218071 1.0 3.3418e-02 1.0 1.12e+08 1.0 0.0e+00 0.0e+00 0.0e+00  5 29  0  0  0   5 29  0  0  0  3347
+VecAssemblyBegin   50003 1.0 3.2566e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+VecAssemblyEnd     50003 1.0 3.6235e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+VecPointwiseMult  218071 1.0 2.5805e-02 1.0 2.20e+07 1.0 0.0e+00 0.0e+00 0.0e+00  4  6  0  0  0   4  6  0  0  0   854
+VecNormalize      218071 1.0 9.6777e-02 1.0 6.59e+07 1.0 0.0e+00 0.0e+00 0.0e+00 13 17  0  0  0  13 17  0  0  0   681
+MatMult           168070 1.0 1.1157e-01 1.0 8.35e+07 1.0 0.0e+00 0.0e+00 0.0e+00 15 22  0  0  0  15 22  0  0  0   749
+MatAssemblyBegin       1 1.0 9.5367e-07 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatAssemblyEnd         1 1.0 4.7207e-05 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+KSPSetUp               1 1.0 4.6968e-05 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+KSPSolve           50001 1.0 5.0777e-01 1.0 3.71e+08 1.0 0.0e+00 0.0e+00 0.0e+00 69 97  0  0  0  69 97  0  0  0   730
+KSPGMRESOrthog    168070 1.0 9.1260e-02 1.0 1.55e+08 1.0 0.0e+00 0.0e+00 0.0e+00 12 41  0  0  0  12 41  0  0  0  1703
+PCSetUp                1 1.0 1.0014e-05 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+PCApply           218071 1.0 5.4866e-02 1.0 2.20e+07 1.0 0.0e+00 0.0e+00 0.0e+00  7  6  0  0  0   7  6  0  0  0   401
+------------------------------------------------------------------------------------------------------------------------
+
+Memory usage is given in bytes:
+
+Object Type          Creations   Destructions     Memory  Descendants' Mem.
+Reports information only for process 0.
+
+--- Event Stage 0: Main Stage
+
+              Vector    21             21        51072     0.
+              Matrix     1              1        11356     0.
+       Krylov Solver     1              1        18848     0.
+      Preconditioner     1              1          872     0.
+    Distributed Mesh     1              1         5048     0.
+   Star Forest Graph     2              2         2112     0.
+     Discrete System     1              1          896     0.
+           Weak Form     1              1          616     0.
+              Viewer     2              1          840     0.
+========================================================================================================================
+Average time to get PetscTime(): 0.
+#PETSc Option Table entries:
+-CFL 0.2
+-log_view
+-n 100
+#End of PETSc Option Table entries
+Compiled without FORTRAN kernels
+Compiled with full precision matrices (default)
+sizeof(short) 2 sizeof(int) 4 sizeof(long) 8 sizeof(void*) 8 sizeof(PetscScalar) 8 sizeof(PetscInt) 4
+Configure options: --with-mpi-dir=/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64 --with-blaslapack-dir=/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mkl --with-scalapack-include=/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mkl/include --with-scalapack-lib="-L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mkl/lib/intel64 -lmkl_blacs_intelmpi_lp64 -lmkl_scalapack_lp64" --with-debugging=no --prefix=/work/mae-wenlw/lib/petsc-3.16.6 --download-hdf5 =/work/mae-wenlw/HPC/petsc-3.16.6-package/hdf5-1.12.1.tar.gz --download-hypre=/work/mae-wenlw/HPC/petsc-3.16.6-package/hypre-2.23.0.tar.gz --download-mumps=/work/mae-wenlw/HPC/petsc-3.16.6-package/petsc-pkg-mumps-6d1470374d32.tar.gz --download-metis=/work/mae-wenlw/HPC/petsc-3.16.6-package/petsc-pkg-metis-c8d2dc1e751e.tar.gz COPTFLAGS="-O3 -march=native -mtune=native" CXXOPTFLAGS="-O3 -march=native -mtune=native" FOPTFLAGS="-O3 -march=native -mtune=native"
+-----------------------------------------
+Libraries compiled on 2022-06-02 13:42:17 on login03 
+Machine characteristics: Linux-3.10.0-862.el7.x86_64-x86_64-with-redhat-7.5-Maipo
+Using PETSc directory: /work/mae-wenlw/lib/petsc-3.16.6
+Using PETSc arch: 
+-----------------------------------------
+
+Using C compiler: /share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/bin/mpiicc  -fPIC -wd1572 -Wno-unknown-pragmas -O3 -march=native -mtune=native  -std=c99 
+Using Fortran compiler: /share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/bin/mpiifort  -fPIC -O3 -march=native -mtune=native     -std=c99
+-----------------------------------------
+
+Using include paths: -I/work/mae-wenlw/lib/petsc-3.16.6/include -I/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/include
+-----------------------------------------
+
+Using C linker: /share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/bin/mpiicc
+Using Fortran linker: /share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/bin/mpiifort
+Using libraries: -Wl,-rpath,/work/mae-wenlw/lib/petsc-3.16.6/lib -L/work/mae-wenlw/lib/petsc-3.16.6/lib -lpetsc -Wl,-rpath,/work/mae-wenlw/lib/petsc-3.16.6/lib -L/work/mae-wenlw/lib/petsc-3.16.6/lib -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mkl/lib/intel64 -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mkl/lib/intel64 -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/lib/release_mt -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/lib/release_mt -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/lib -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/mpi/intel64/lib -Wl,-rpath,/work/mae-wenlw/lib/hdf5-1.12.1/lib -L/work/mae-wenlw/lib/hdf5-1.12.1/lib -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/tbb/lib/intel64_lin/gcc4.4 -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/tbb/lib/intel64_lin/gcc4.4 -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/daal/lib/intel64_lin -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/daal/lib/intel64_lin -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/tbb/lib/intel64/gcc4.4 -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/tbb/lib/intel64/gcc4.4 -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/compiler/lib/intel64 -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/compiler/lib/intel64 -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/ipp/lib/intel64 -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/ipp/lib/intel64 -Wl,-rpath,/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/compiler/lib/intel64_lin -L/share/intel/2018u4/compilers_and_libraries_2018.5.274/linux/compiler/lib/intel64_lin -Wl,-rpath,/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -Wl,-rpath,/opt/intel/mpi-rt/2017.0.0/intel64/lib/release_mt -Wl,-rpath,/opt/intel/mpi-rt/2017.0.0/intel64/lib -lHYPRE -lcmumps -ldmumps -lsmumps -lzmumps -lmumps_common -lpord -lmkl_blacs_intelmpi_lp64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lhdf5_hl -lhdf5 -lmetis -lX11 -lstdc++ -ldl -lmpifort -lmpi -lmpigi -lrt -lpthread -lifport -lifcoremt_pic -limf -lsvml -lm -lipgo -lirc -lgcc_s -lirc_s -lquadmath -lstdc++ -ldl
+-----------------------------------------
+

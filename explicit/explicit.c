@@ -13,7 +13,7 @@ int main(int argc,char **args)
     PC             pc;               /* preconditioner context */
     PetscReal      CFL=0.4, dx, dt, x=0, t=0;
     PetscErrorCode ierr;
-    PetscInt       i,j,n = 100,col[3],its,rstart,rend,nlocal,hstart,hend,hlocal,indic,restart=0;
+    PetscInt       i,j,n = 100,col[3],its,rstart,rend,nlocal,hstart,hend,hlocal,restart=0;
     PetscScalar    one = 1.0,value[3], v, *array;
     PetscMPIInt    rank;
     PetscViewer    viewer;
@@ -21,14 +21,15 @@ int main(int argc,char **args)
    
     ierr = PetscInitialize(&argc,&args,(char*)0,help);if (ierr) return ierr;
     ierr = MPI_Comm_rank(PETSC_COMM_WORLD,&rank);CHKERRQ(ierr);
+    /* get input value*/
     ierr = PetscOptionsGetInt(NULL,NULL,"-restart",&restart,NULL);CHKERRQ(ierr);
-   
-    /* set save_value to get n,CFL,t*/
+    ierr = PetscOptionsGetInt(NULL,NULL,"-n",&n,NULL);CHKERRQ(ierr);
+    /* set vector save_value to store n,CFL,t*/
     ierr = VecCreate(PETSC_COMM_WORLD,&save_value);CHKERRQ(ierr);
     ierr = PetscObjectSetName((PetscObject) save_value, "save_value");
     ierr = VecSetSizes(save_value,3,PETSC_DECIDE);CHKERRQ(ierr);
     ierr = VecSetFromOptions(save_value);CHKERRQ(ierr);
-
+    /* git the start and end of save_value in each cpu */
     ierr = VecGetOwnershipRange(save_value,&hstart,&hend);CHKERRQ(ierr);
     ierr = VecGetLocalSize(save_value,&hlocal);CHKERRQ(ierr);
     ierr = PetscPrintf(PETSC_COMM_SELF,"rank = [%d] nlocal = %d hstart = %d hend = %d\n", rank, hlocal,hstart, hend);CHKERRQ(ierr); 
@@ -41,12 +42,12 @@ int main(int argc,char **args)
             col[0] = i;col[1] = i+1;col[2] = i+2;
         }
         ierr = VecGetValues(save_value, 3, col, value);
-        // ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %g CFL = %g t = %g\n", value[0], value[1], value[2]);CHKERRQ(ierr);
         n = (int)value[0]; CFL = value[1]; t = value[2]; 
     }
     dx  = 1.0/n;
     dt  = CFL * dx * dx;
-    ierr = PetscPrintf(PETSC_COMM_WORLD,"dx= %g dt = %g\n", dx, dt);CHKERRQ(ierr);
+    its = (int) 1.0/dt + 2;
+    ierr = PetscPrintf(PETSC_COMM_WORLD,"dx= %g dt = %g its %d\n", dx, dt, its);CHKERRQ(ierr);
     // set vector
     // set u_numeracal
     ierr = VecCreate(PETSC_COMM_WORLD,&u);CHKERRQ(ierr);
@@ -96,6 +97,7 @@ int main(int argc,char **args)
     }
     ierr = VecAssemblyBegin(u);CHKERRQ(ierr);
     ierr = VecAssemblyEnd(u);CHKERRQ(ierr);
+    /*if reload, Load vector u in the file*/
     if(restart){
         VecLoad(u, viewer); // if is reload. Set value here
         ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr); // close the read IO
@@ -115,7 +117,7 @@ int main(int argc,char **args)
     ierr = VecAssemblyEnd(add_term);CHKERRQ(ierr);
 
     ierr = PetscViewerHDF5Open(PETSC_COMM_WORLD,"explicit.h5",FILE_MODE_WRITE,&viewer);CHKERRQ(ierr); // open write IO
-    for (j=0; j<25001; j++)
+    for (j=0; j<its; j++)
     {
         t += dt; 
         x =  0;
@@ -148,7 +150,8 @@ int main(int argc,char **args)
             ierr = VecView(save_value,viewer);CHKERRQ(ierr);
             ierr = VecView(u,viewer);CHKERRQ(ierr);          
         }
-    }ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr);
+    }
+    ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr);
    
     ierr = VecDestroy(&u);CHKERRQ(ierr);
     ierr = VecDestroy(&uold);CHKERRQ(ierr); 

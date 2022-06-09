@@ -1,0 +1,923 @@
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826661: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:27:30 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:27:32 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:27:32 2022.
+Terminated at Wed Jun  8 19:27:50 2022.
+Results reported at Wed Jun  8 19:27:50 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -restart 0 -n 100 \
+-log_view > $LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   3.00 sec.
+    Max Memory :                                 24 MB
+    Average Memory :                             19.33 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   21 MB
+    Max Processes :                              7
+    Max Threads :                                9
+    Run time :                                   18 sec.
+    Turnaround time :                            20 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826674: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:31:25 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:31:27 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:31:27 2022.
+Terminated at Wed Jun  8 19:31:29 2022.
+Results reported at Wed Jun  8 19:31:29 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -n 100 \
+-log_view > $LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   0.38 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   1 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826677: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:33:21 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:33:22 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:33:22 2022.
+Terminated at Wed Jun  8 19:33:25 2022.
+Results reported at Wed Jun  8 19:33:25 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -n 100 \
+-log_view > $LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1.00 sec.
+    Max Memory :                                 21 MB
+    Average Memory :                             21.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   21 MB
+    Max Processes :                              7
+    Max Threads :                                9
+    Run time :                                   2 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826679: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:34:35 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:34:36 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:34:36 2022.
+Terminated at Wed Jun  8 19:34:39 2022.
+Results reported at Wed Jun  8 19:34:39 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -n 100 \
+-log_view > $LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   0.36 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   2 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826683: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:35:43 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:35:45 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:35:45 2022.
+Terminated at Wed Jun  8 23:03:51 2022.
+Results reported at Wed Jun  8 23:03:51 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -n 5000 \
+-log_view > 1$LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   12426.61 sec.
+    Max Memory :                                 18 MB
+    Average Memory :                             18.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   21 MB
+    Max Processes :                              9
+    Max Threads :                                11
+    Run time :                                   12485 sec.
+    Turnaround time :                            12488 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3827418: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:16:52 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:16:53 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Thu Jun  9 00:16:53 2022.
+Terminated at Thu Jun  9 00:16:56 2022.
+Results reported at Thu Jun  9 00:16:56 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n21'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -n 100 \
+-log_view > 1.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   0.25 sec.
+    Max Memory :                                 10 MB
+    Average Memory :                             4.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              7
+    Max Threads :                                9
+    Run time :                                   2 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3827422: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:18:58 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:18:59 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Thu Jun  9 00:18:59 2022.
+Terminated at Thu Jun  9 00:23:28 2022.
+Results reported at Thu Jun  9 00:23:28 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n21'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 2 ./explicit_no.out -n 3000 \
+-log_view > 2.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   530.59 sec.
+    Max Memory :                                 24 MB
+    Average Memory :                             24.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              10
+    Max Threads :                                12
+    Run time :                                   268 sec.
+    Turnaround time :                            270 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3827421: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:18:34 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:18:34 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Thu Jun  9 00:18:34 2022.
+Terminated at Thu Jun  9 00:25:48 2022.
+Results reported at Thu Jun  9 00:25:48 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n21'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 1 ./explicit_no.out -n 3000 \
+-log_view > 1.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   428.58 sec.
+    Max Memory :                                 24 MB
+    Average Memory :                             24.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              9
+    Max Threads :                                11
+    Run time :                                   434 sec.
+    Turnaround time :                            434 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3827423: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:19:10 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:23:28 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Thu Jun  9 00:23:28 2022.
+Terminated at Thu Jun  9 00:26:31 2022.
+Results reported at Thu Jun  9 00:26:31 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n21'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 4 ./explicit_no.out -n 3000 \
+-log_view > 4.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   717.18 sec.
+    Max Memory :                                 40 MB
+    Average Memory :                             38.26 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              12
+    Max Threads :                                14
+    Run time :                                   183 sec.
+    Turnaround time :                            441 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3827424: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:19:20 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:25:48 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Thu Jun  9 00:25:48 2022.
+Terminated at Thu Jun  9 00:29:49 2022.
+Results reported at Thu Jun  9 00:29:49 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n21'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 8 ./explicit_no.out -n 3000 \
+-log_view > 8.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1846.00 sec.
+    Max Memory :                                 73 MB
+    Average Memory :                             70.39 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              16
+    Max Threads :                                18
+    Run time :                                   239 sec.
+    Turnaround time :                            629 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826684: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:35:51 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:35:55 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:35:55 2022.
+Terminated at Thu Jun  9 00:31:56 2022.
+Results reported at Thu Jun  9 00:31:56 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 2 ./explicit_no.out -n 5000 \
+-log_view > 2$LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   35215.08 sec.
+    Max Memory :                                 28 MB
+    Average Memory :                             27.99 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              10
+    Max Threads :                                12
+    Run time :                                   17760 sec.
+    Turnaround time :                            17765 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n21>
+Subject: Job 3827425: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:19:30 2022.
+Job was executed on host(s) <5*r01n21>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Thu Jun  9 00:26:31 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Thu Jun  9 00:26:31 2022.
+Terminated at Thu Jun  9 00:57:16 2022.
+Results reported at Thu Jun  9 00:57:16 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n21'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 16 ./explicit_no.out -n 3000 \
+-log_view > 16.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   26446.00 sec.
+    Max Memory :                                 137 MB
+    Average Memory :                             136.21 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                26
+    Run time :                                   1845 sec.
+    Turnaround time :                            2266 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
+Sender: LSF System <lsfadmin@r01n28>
+Subject: Job 3826686: <petsc-test> in cluster <sustchpc> Done
+
+Job <petsc-test> was submitted from host <login03> by user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:35:59 2022.
+Job was executed on host(s) <5*r01n28>, in queue <ser>, as user <mae-wenlw> in cluster <sustchpc> at Wed Jun  8 19:36:05 2022.
+</work/mae-wenlw> was used as the home directory.
+</work/mae-wenlw/HPC/Project/explicit/no_output> was used as the working directory.
+Started at Wed Jun  8 19:36:05 2022.
+Terminated at Thu Jun  9 01:42:55 2022.
+Results reported at Thu Jun  9 01:42:55 2022.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J petsc-test
+#BSUB -q ser
+#BSUB -n 5
+#BSUB -e petsc.err
+#BSUB -o petsc.out
+#BSUB -m 'r01n28'
+
+module purge
+module load intel/2018.4
+module load mpi/intel/2018.4
+
+
+# mpirun -np 5 ./explicit.out \
+# -log_view > $LSB_JOBID.log 2>&1 \
+
+mpirun -np 4 ./explicit_no.out -n 5000 \
+-log_view > 4$LSB_JOBID.log 2>&1 \
+
+# mpirun -np 5 ./ex5.out -ksp_type gmres \
+#   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
+#   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
+#   -ksp_gmres_modifiedgramschmidt \
+#   -pc_type asm \
+#   -sub_ksp_type richardson \
+#   -sub_pc_type icc -ksp_monitor_short \
+#   -ksp_converged_reason \
+#   -ksp_view \
+#   -log_view > $LSB_JOBID.log 2>&1
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   86637.59 sec.
+    Max Memory :                                 49 MB
+    Average Memory :                             48.99 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              12
+    Max Threads :                                14
+    Run time :                                   22009 sec.
+    Turnaround time :                            22016 sec.
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <petsc.err> for stderr output of this job.
+
