@@ -14,10 +14,10 @@ module load valgrind/3.14.0
 # mpirun -np 5 ./explicit.out \
 # -log_view > $LSB_JOBID.log 2>&1 \
 
-# mpirun -np 1 ./explicit.out -restart 0 -n 100 \
-# -log_view > $LSB_JOBID.log 2>&1 \
-valgrind mpirun ./explicit.out \
--log_view > valgrind$LSB_JOBID.log 2>&1 \
+mpirun -np 1 ./explicit.out -restart 0 -n 100 \
+-log_view > $LSB_JOBID.log 2>&1 \
+# valgrind mpirun ./explicit.out \
+# -log_view > valgrind$LSB_JOBID.log 2>&1 \
 
 # mpirun -np 5 ./ex5.out -ksp_type gmres \
 #   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
