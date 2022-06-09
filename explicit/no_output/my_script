@@ -1,10 +1,10 @@
 #!/bin/bash
 #BSUB -J petsc-test
 #BSUB -q ser
-#BSUB -n 5
+#BSUB -n 10
 #BSUB -e petsc.err
 #BSUB -o petsc.out
-#BSUB -m 'r01n21'
+#BSUB -R "span[ptile=10]"
 
 module purge
 module load intel/2018.4
@@ -14,8 +14,8 @@ module load mpi/intel/2018.4
 # mpirun -np 5 ./explicit.out \
 # -log_view > $LSB_JOBID.log 2>&1 \
 
-mpirun -np 16 ./explicit_no.out -n 3000 \
--log_view > 16.log 2>&1 \
+mpirun -np 10 ./explicit_no.out -n 1000 -dt 0.00000001 \
+-log_view > weak10.log 2>&1 \
 
 # mpirun -np 5 ./ex5.out -ksp_type gmres \
 #   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \

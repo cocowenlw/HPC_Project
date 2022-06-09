@@ -4,12 +4,17 @@
 \usepackage{lipsum}
 \usepackage{amsmath}
 \usepackage{lmodern}
-\title{Final Project}
+\usepackage{listings}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\graphicspath{ {./data/} }
+\title{\textbf{Final Project}}
 \author{\songti wenlewei}
-\date{2022.05.26}
+\date{2022.06.09}
 \begin{document}
 \maketitle
-    \section{Problem B}
+    \section{Equation analysis}
         \begin{align*}
             \rho c \frac{\partial u}{\partial t} - \kappa  \frac{\partial^2 u}{\partial x^2} &= f \quad \mbox{ on } \Omega \times (0,T) \\
             u &= g \quad \mbox{ on } \Gamma_{g} \times (0,T) \\
@@ -24,24 +29,24 @@
         \begin{align*}
             \rho c \frac{\partial u}{\partial t} - \kappa  \frac{\partial^2 u}{\partial x^2} &= sin(l\pi x)
         \end{align*}
-        Use explicit difference scheme.
+        \textbf{Use explicit difference scheme.}
         \begin{align*}
-            \frac{\partial u}{\partial t} &= \frac{u^{n+1}_i - u^n_i}{\Delta t} \\
-            \frac{\partial^2 u}{\partial x^2} &= \frac{u^n_{i+1}-2u^n_i+u^n_{i-1}}{\Delta x^2}
+            \frac{\partial u}{\partial t} &= \frac{u^{n+1}_j - u^n_j}{\Delta t} \\
+            \frac{\partial^2 u}{\partial x^2} &= \frac{u^n_{j+1}-2u^n_j+u^n_{j-1}}{\Delta x^2}
         \end{align*}
         A explicit numerical solution can be obtained.
         \begin{align*}
-            u^{n+1}_i &= \frac{\kappa \Delta t}{\rho c \Delta x^2} u^n_{i+1} + (1 - \frac{2\kappa \Delta t}{\rho c \Delta x^2})u^n_i + \frac{\kappa \Delta t}{\rho c \Delta x^2}u^n_{i-1} + \frac{\Delta t sin(l \pi x)}{\rho c}
+            u^{n+1}_j &= \frac{\kappa \Delta t}{\rho c \Delta x^2} u^n_{j+1} + (1 - \frac{2\kappa \Delta t}{\rho c \Delta x^2})u^n_j + \frac{\kappa \Delta t}{\rho c \Delta x^2}u^n_{j-1} + \frac{\Delta t sin(l \pi x)}{\rho c}
         \end{align*}
-        Use implicit difference scheme.
+        \textbf{Use implicit difference scheme.}
         \begin{align*}
-            \frac{\partial u}{\partial t} &= \frac{u^{n+1}_i - u^n_i}{\Delta t} \\
-            \frac{\partial^2 u}{\partial x^2} &= \frac{u^{n+1}_{i+1}-2u^{n+1}_i+u^{n+1}_{i-1}}{\Delta x^2}
+            \frac{\partial u}{\partial t} &= \frac{u^{n+1}_j - u^n_j}{\Delta t} \\
+            \frac{\partial^2 u}{\partial x^2} &= \frac{u^{n+1}_{j+1}-2u^{n+1}_j+u^{n+1}_{j-1}}{\Delta x^2}
         \end{align*}
         A implicit numerical solution can be obtained.
         \begin{align*}
             CFL &= \frac{\kappa \Delta t}{\rho c \Delta x^2} \\
-            -CFL u^{n+1}_{i-1} + (1+2CFL)u^{n+1}_i - CFL u^{n+1}_{i+1} &= u^n_i + \frac{\kappa \Delta t}{\rho c}sin(l \pi x)
+            -CFL u^{n+1}_{j-1} + (1+2CFL)u^{n+1}_j - CFL u^{n+1}_{j+1} &= u^n_j + \frac{\kappa \Delta t}{\rho c}sin(l \pi x)
         \end{align*}
         To solve the implicit equation, we need to solve the diagonal matrix first.
         \begin{align*}
@@ -72,7 +77,8 @@
                 \end{matrix}
             \right]
         \end{align*}
-        then we calculate the analytical solution.the solution of the partial differential equation will converge to a steady state solution as time $t \rightarrow \infty$. In particular, the steady state is characterized by $\partial u / \partial t = 0$. 
+
+        Then we calculate the analytical solution.the solution of the partial differential equation will converge to a steady state solution as time $t \rightarrow \infty$. In particular, the steady state is characterized by $\partial u / \partial t = 0$. 
         \begin{align*}
             \kappa  \frac{\partial^2 u}{\partial x^2} + sin(l\pi x) &= 0 \\
             \frac{\partial u}{\partial x} - \frac{cos(l \pi x)}{l \pi} + c_1 &= 0 \\
@@ -82,5 +88,177 @@
         \begin{align*}
             u &= \frac{sin(l \pi x)}{l^2\pi^2} - \frac{sin(l \pi)}{l^2 \pi^2}x
         \end{align*}
+    \section{Stability analysis}    
+        From the above steps, we get the explicit solution and the implicit solution.The stability of them was analyzed by von Neumann.
+        $CFL = \frac{\kappa \Delta t}{\rho c \Delta x^2}$
+
+        \textbf{For explicit difference scheme}
+        \begin{align*}
+            \delta u^{n+1}_i &= CFL \delta u^n_{j+1} + (1-2CFL)\delta u^n_j + CFL \delta u^n_{j-1} \\
+            \delta u^n_j &\sim e^{\sigma n \Delta t}e^{i(kj\Delta x)} \\
+            e^{\sigma \Delta t} &= CFLe^{ik\Delta x} + (1-2CFL) + CFLe^{-ik\Delta x} \\
+            &= |1 - 2CFL + 2CFL cos(k\Delta x)| \leq 1 
+        \end{align*}  
+        \begin{align*}
+            -1 \leq cos(k\Delta x) \leq 1 \\
+            0 \leq CFL \leq \frac{1}{2} \\  
+        \end{align*}  
+
+        \textbf{For implicit difference scheme}
+        \begin{align*}
+           \delta u^n_j &= -CFL\delta u^{n+1}_{j-1} + (1+2CFL)\delta u^{n+1}_j -CFL u^{n+1}_{j+1} \\
+           \delta u^n_j &\sim e^{\sigma n \Delta t}e^{i(kj\Delta x)} \\
+           e^{\sigma \Delta t} &= \frac{1}{2CFL(1-cos(k\Delta x))+1} \\
+           &= |\frac{1}{2CFL(1-cos(k\Delta x))+1}| \leq 1 
+        \end{align*} 
         
+        unconditionally stable.
+    \section{Technical details of development}
+        \textbf{Restart facility using HDF5}
+
+        There are dedicated HDF5 reads and writes on PETSC. Read and write the file using the function PetscViewerHDF5Open. Vectors from a file can be read using the function VecLoad, and vectors can be written to a file using the function VecView.
+        The design idea is to check whether the restart status is determined by the field. It does not run properly on restart and writes data to an HDF5 file every 10 iterations. If the HDF5 file is restarted, read the data from the HDF5 file first and continue with the above operations. Note how the data is stored, the number of data grids to be stored, the time interval between iterations, and the result vector generated by the last breakpoint.
+        Because I can't find a function in pets that stores scalars into HDF5. So I store the above three scalars into a vector and access them together.As shown in the following figure.
+        \begin{figure}[H] 
+            \centering 
+            \includegraphics[width=0.6\textwidth]{vector3.jpg} 
+            \label{Fig.vector3} 
+        \end{figure}
+        The difficulty in writing this part is the problem of vector access to numbers. Because many functions in PETSc are based on the current process. Therefore, it is very difficult to access vectors accurately, because you may find that even if you specify the subscript, the subscript is based on the process, so you will find that my data appears under other subscripts. The way to solve this problem is to set the process space of the vector to 3, and access the three scalars in each process, although
+        The figure below briefly shows my approach.
+        \begin{figure}[H] 
+            \centering 
+            \includegraphics[width=0.8\textwidth]{vector31.jpg} 
+            \label{Fig.vector31} 
+        \end{figure}
+        \textbf{Valgrind}
+
+        The report said that 10 bytes of data must be leaked. After discussion with classmates, it was found that the library file was leaked.
+        Open --leak-check=full to detect and get warnings about some dynamic libraries in the library file, so it cannot be solved.
+        The explicit and implicit reports are similar, so a detection screenshot of the explicit results is placed below.
+        \begin{figure}[H] 
+            \centering 
+            \includegraphics[width=0.6\textwidth]{valgrind.jpg} 
+            \label{Fig.valgrind1} 
+        \end{figure}
+        \textbf{Visualization of results}
+        \begin{figure}[H]
+            \centering  
+            \subfigure[explicit]{
+            \label{Fig.sub.13}
+            \includegraphics[width=0.48\textwidth]{expicit.png}}
+            \subfigure[implicit]{
+            \label{Fig.sub.14}
+            \includegraphics[width=0.48\textwidth]{impicit.png}}
+            \label{Fig.data}
+        \end{figure}
+        Use Python to visualize the data. When t=1, the results obtained are compared with the analytical solution. It can be found that the curve is consistent, and the coding of the two methods can be verified to be correct.
+        
+        \textbf{Note: all visualizations in this project are in Python}
+    \section{Manufactured solution method}
+        The error is defined as $e := \mathrm{max}_{1 \leq i \leq n} |  u_{\mathrm{exact}, i} -  u_{\mathrm{num}, i}| $, where $u_{\mathrm{exact}, i}$ and $u_{\mathrm{num}, i}$ are the $i$-th component of the solution vectors with the vector length being $n$. The error is related to the mesh resolution as $e \approx C_1 \Delta x^{\alpha} + C_2 \Delta t^{\beta}$. To determine the value of $\alpha$ and $\beta$, you need to progressively refine your mesh and document the error value with the corresponding mesh size. 
+
+        \textbf{For explicit difference scheme}
+        \begin{figure}[H]
+            \centering  
+            \subfigure[dx=0.01]{
+            \label{Fig.sub.1}
+            \includegraphics[width=0.48\textwidth]{explicit_dt.png}}
+            \subfigure[dt=1e-05]{
+            \label{Fig.sub.2}
+            \includegraphics[width=0.48\textwidth]{explicit_dx.png}}
+            \label{Fig.error1}
+        \end{figure}
+        Use a straight line to approximate the values of $log(e)$ against $log(\Delta x)$.We can find the slop in figure (a) is -0.001409. The slop in figure (b) is 0.12542. So $\alpha=0.12542 \quad \beta=-0.001409$.  
+        
+        \textbf{For implicit difference scheme}
+        \begin{figure}[H]
+            \centering  
+            \subfigure[dx=0.01]{
+            \label{Fig.sub.3}
+            \includegraphics[width=0.48\textwidth]{implicit_dt.png}}
+            \subfigure[dt=1e-05]{
+            \label{Fig.sub.4}
+            \includegraphics[width=0.48\textwidth]{implicit_dx.png}}
+            \label{Fig.error2}
+        \end{figure}
+        Use a straight line to approximate the values of $log(e)$ against $log(\Delta x)$.We can find the slop in figure (a) is -1.305024. The slop in figure (b) is 0.404907. So $\alpha=0.404907 \quad \beta=-1.305024$.
+       
+        It can be summarized from the above results.The denser the grid, the smaller the error of numerical solution. So the accuracy will be higher.And it can be seen from the slope. Implicit solutions are more affected by spatial-temporal partition density than explicit solutions.
+    \section{Parallelism}
+        Based on different time and solutions, scalability can be divided into strong scalability and weak scalability. The characteristic of strong scalability is that when more processors are added, the scale of the problem itself will not increase. The characteristic of weak scalability is that as more processors are added, the scale of problems to be handled in each process remains the same.
+        
+        \textbf{For explicit difference scheme}
+
+        Firstly, the strong scalability of the explicit solution is analyzed.
+        \begin{figure}[H]
+            \centering  
+            \subfigure[explicit iteration]{
+            \label{Fig.sub.5}
+            \includegraphics[width=0.48\textwidth]{costtime/ESiter.png}}
+            \subfigure[explicit matrix]{
+            \label{Fig.sub.6}
+            \includegraphics[width=0.48\textwidth]{costtime/ESmat.png}}
+            \label{Fig.time1}
+        \end{figure}
+        Figure (e) is a strong scalability analysis of iteration time. It can be found that as the number of processes increases, less time is spent. In an ideal state, the time spent on p cores should be equal to $\frac{1}{p}$ times the time spent on a single core. It can be seen from the figure that as the number of cores is greater than 8, the decline curve begins to pick up. Through analysis, this situation should be affected by the high proportion of processes communication.
+        This situation can also be found from the time of matrix assembly in Figure (f).
+        
+        Then we are going to analyze weak scalability.
+        \begin{figure}[H]
+            \centering  
+            \subfigure[explicit iteration]{
+            \label{Fig.sub.7}
+            \includegraphics[width=0.48\textwidth]{costtime/EWiter.png}}
+            \subfigure[explicit matrix]{
+            \label{Fig.sub.8}
+            \includegraphics[width=0.48\textwidth]{costtime/EWmat.png}}
+            \label{Fig.time2}
+        \end{figure}
+        The weak scalability analysis is that the task size of each core is the same. As you can see from the figure, it takes a lot of time when processors is 8.
+        It can be concluded that the weak scalability is poor under the current variable.
+
+        \textbf{For implicit difference scheme}
+
+        Firstly, the strong scalability of the implicit solution is analyzed. 
+        \begin{figure}[H]
+            \centering  
+            \subfigure[implicit iteration]{
+            \label{Fig.sub.9}
+            \includegraphics[width=0.48\textwidth]{costtime/ISiter.png}}
+            \subfigure[implicit matrix]{
+            \label{Fig.sub.10}
+            \includegraphics[width=0.48\textwidth]{costtime/ISmat.png}}
+            \label{Fig.time3}
+        \end{figure}
+        From the strong scalability analysis of the implicit solution, we can get the same trend as the explicit solution. It is more similar to the expected value than the explicit solution.
+
+        Then, the expansibility of the implicit solution is analyzed. Unlike the previous question on checking weak scalability, I increased the size of the work on each processor. When processors is 4, the number of grids is 4000.
+        \begin{figure}[H]
+            \centering  
+            \subfigure[implicit iteration]{
+            \label{Fig.sub.11}
+            \includegraphics[width=0.48\textwidth]{costtime/IWiter.png}}
+            \subfigure[implicit matrix]{
+            \label{Fig.sub.12}
+            \includegraphics[width=0.48\textwidth]{costtime/IWmat.png}}
+            \label{Fig.time4}
+        \end{figure}
+        The expected result should be similar to the time spent, because the task quantity of each core is the same. However, from the difference in the figure, we can see that weak scalability is not good.
+
+        Investigate the following PC options from PETSc for your parallel test: (a) Jacobi; (b) Additive Schwarz; (c) LU with MUMPS.
+
+        From the figure below, we can see that using Jacobi takes the least time, while LU decomposition takes much more time than the other two methods. Looking at their floating-point performance, we can find that although the use of LU decomposition can reduce the total number of floating-point operations. However, it requires a large amount of data access, which reduces the amount of floating-point operations per unit time, so it takes the most time.
+        \begin{figure}[H]
+            \centering  
+            \subfigure[time]{
+            \label{Fig.sub.15}
+            \includegraphics[width=0.48\textwidth]{time.png}}
+            \subfigure[flop]{
+            \label{Fig.sub.16}
+            \includegraphics[width=0.48\textwidth]{flot.png}}
+            \label{Fig.flot}
+        \end{figure}
+        
+       
 \end{document}

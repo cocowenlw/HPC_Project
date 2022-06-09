@@ -1,17 +1,19 @@
 #!/bin/bash
-#BSUB -J petsc-test
-#BSUB -q debug
-#BSUB -n 5
+#BSUB -J petsc-test3
+#BSUB -q ser
+#BSUB -n 4
 #BSUB -e petsc.err
 #BSUB -o petsc.out
+#BSUB -R "span[ptile=4]"
 
 module purge
 module load intel/2018.4
 module load mpi/intel/2018.4
 
-mpirun -np 1 ./implicit_no.out -n 100 -CFL 0.1 \
--log_view > $LSB_JOBID.log 2>&1
-# mpirun -np 5 ./ex5.out -ksp_type gmres \
+mpirun -np 4 ./implicit_no.out -n 100 \
+-pc_type lu \
+-log_view > ksp_lu.log 2>&1
+# mpirun -np 4 ./implicit_no.out -ksp_type gmres \
 #   -ksp_gmres_restart 30 -ksp_rtol 1.0e-10 \
 #   -ksp_atol 1.0e-50 -ksp_max_it 1500 \
 #   -ksp_gmres_modifiedgramschmidt \

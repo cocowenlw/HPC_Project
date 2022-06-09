@@ -9,8 +9,6 @@ int main(int argc,char **args)
 {
     Vec            u, uold, ua, add_term, save_value;          /* approx solution, RHS, exact solution */
     Mat            A;                /* linear system matrix */
-    KSP            ksp;              /* linear solver context */
-    PC             pc;               /* preconditioner context */
     PetscReal      CFL=0.4, dx, dt, x=0, t=0;
     PetscErrorCode ierr;
     PetscInt       i,j,n = 100,col[3],its,rstart,rend,nlocal,hstart,hend,hlocal,restart=0;
@@ -27,7 +25,7 @@ int main(int argc,char **args)
     /* set vector save_value to store n,CFL,t*/
     ierr = VecCreate(PETSC_COMM_WORLD,&save_value);CHKERRQ(ierr);
     ierr = PetscObjectSetName((PetscObject) save_value, "save_value");
-    ierr = VecSetSizes(save_value,3,PETSC_DECIDE);CHKERRQ(ierr);
+    ierr = VecSetSizes(save_value,3,PETSC_DECIDE);CHKERRQ(ierr); // local set 3
     ierr = VecSetFromOptions(save_value);CHKERRQ(ierr);
     /* git the start and end of save_value in each cpu */
     ierr = VecGetOwnershipRange(save_value,&hstart,&hend);CHKERRQ(ierr);
@@ -143,10 +141,10 @@ int main(int argc,char **args)
             ierr = VecAssemblyBegin(save_value);CHKERRQ(ierr);
             ierr = VecAssemblyEnd(save_value);CHKERRQ(ierr); 
             /*print*/
-            ierr = PetscPrintf(PETSC_COMM_WORLD,"t = %f\n", t);CHKERRQ(ierr);
+            // ierr = PetscPrintf(PETSC_COMM_WORLD,"t = %f\n", t);CHKERRQ(ierr);
             // write numerical solution and n,t,CFL in hdf5
-            ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %d CFL = %f t = %f\n", n, CFL, t);CHKERRQ(ierr);
-            ierr = VecView(save_value,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+            // ierr = PetscPrintf(PETSC_COMM_WORLD,"n = %d CFL = %f t = %f\n", n, CFL, t);CHKERRQ(ierr);
+            // ierr = VecView(save_value,PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
             ierr = VecView(save_value,viewer);CHKERRQ(ierr);
             ierr = VecView(u,viewer);CHKERRQ(ierr);          
         }
